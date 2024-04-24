@@ -5,7 +5,7 @@ from .forms import AddProductForm
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
 
-def add_products(request):
+def add_product(request):
     if request.method == 'POST':
         form = AddProductForm(request.POST)
         if form.is_valid():
