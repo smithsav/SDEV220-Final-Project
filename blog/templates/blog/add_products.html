@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Products</title>
+</head>
+<body>
+
+<h1>Add Products</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="product_name">Product Name:</label><br>
+    <input type="text" id="product_name" name="product_name"><br>
+    <label for="product_quantity">Quantity:</label><br>
+    <input type="number" id="product_quantity" name="product_quantity"><br>
+    <label for="product_price">Price:</label><br>
+    <input type="number" id="product_price" name="product_price"><br><br>
+    <input type="submit" value="Add Product">
+</form>
+
+{% if product %}
+    <h2>Product Details</h2>
+    <p>Product Name: {{ product.name }}</p>
+    <p>Quantity: {{ product.quantity }}</p>
+    <p>Price: {{ product.price }}</p>
+{% endif %}
+
+</body>
+</html>
