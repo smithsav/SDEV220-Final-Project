@@ -11,3 +11,6 @@ def view_inventory(request):
 
 def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
+
+def add_customerID(request):
+    return render(request, 'blog/add_customerID.html', {})
