@@ -8,3 +8,6 @@ urlpatterns = [
     path('record_sale/', views.record_sale, name='record_sale'),
     path('add_customerID/', views.add_customerID, name='add_customerID'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
