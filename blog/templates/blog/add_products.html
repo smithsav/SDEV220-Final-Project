@@ -11,6 +11,7 @@
 
 <form action="" method="post">
     {% csrf_token %}
+    {{ form.as_p }}
     <label for="product_name">Product Name:</label><br>
     <input type="text" id="product_name" name="product_name"><br>
     <label for="product_quantity">Quantity:</label><br>
