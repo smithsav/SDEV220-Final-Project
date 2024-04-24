@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Products  
+from .products import Products  
 from .forms import AddProductForm
 
 def post_list(request):
