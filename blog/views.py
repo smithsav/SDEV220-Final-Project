@@ -21,7 +21,7 @@ def add_products(request):
     else:
         form = AddProductForm()
     
-    return render(request, 'blog/add_product.html', {})
+    return render(request, 'blog/add_products.html', {})
 
 def view_inventory(request):
     return render(request, 'blog/view_inventory.html', {})
