@@ -24,7 +24,9 @@ def add_product(request):
     return render(request, 'blog/add_products.html', {})
 
 def view_inventory(request):
-    return render(request, 'blog/view_inventory.html', {})
+    products = Product.objects.all()
+
+    return render(request, 'view_inventory.html', {'products': products})
 
 def record_sale(request):
     return render(request, 'blog/record_sale.html', {})

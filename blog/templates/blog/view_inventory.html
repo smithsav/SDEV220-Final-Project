@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+
+<h1>Inventory</h1>
+
+{% if products %}
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>${{ product.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No products in inventory.</p>
+{% endif %}
+
+</body>
+</html>
