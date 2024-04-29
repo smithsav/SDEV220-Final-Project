@@ -21,6 +21,12 @@
     <input type="submit" value="Add Product">
 </form>
 
+<form action="{% url 'add_product' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Product">
+</form>
+
 {% if product %}
     <h2>Product Details</h2>
     <p>Product Name: {{ product.name }}</p>
