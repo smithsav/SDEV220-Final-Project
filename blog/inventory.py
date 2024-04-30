@@ -1,6 +1,6 @@
 class Inventory:
     def __init__(self):
-        self.inventoryType = {}  # Dictionary to store inventory details 
+        self.inventoryType = {}  
 
     def inventory_type(self):
         return self.inventoryType.keys()
