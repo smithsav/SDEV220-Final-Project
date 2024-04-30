@@ -34,14 +34,20 @@
 
 <h1>Products</h1>
 
-<form action="{% url 'add_product' %}" method="post">
-    {% if product %}
-        <h2>Product Details</h2>
-        <p>Product Name: {{ product.name }}</p>
-        <p>Quantity: {{ product.quantity }}</p>
-        <p>Price: {{ product.price }}</p>
-    {% endif %}
-</form>
+{% if products %}
+    <h2>Product Details</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <p>Product Name: {{ product.name }}</p>
+                <p>Quantity: {{ product.quantity }}</p>
+                <p>Price: {{ product.price }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products available.</p>
+{% endif %}
 
 </body>
 </html>
