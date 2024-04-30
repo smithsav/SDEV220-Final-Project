@@ -7,6 +7,7 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST':
+        print(request.POST)  
         form = AddProductForm(request.POST)
         if form.is_valid():
             product_name = form.cleaned_data['product_name']
