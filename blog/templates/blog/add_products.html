@@ -32,13 +32,16 @@
     <input type="submit" value="Add Product">
 </form>
 
+<h1>Products</h1>
 
-{% if product %}
-    <h2>Product Details</h2>
-    <p>Product Name: {{ product.name }}</p>
-    <p>Quantity: {{ product.quantity }}</p>
-    <p>Price: {{ product.price }}</p>
-{% endif %}
+<form action="{% url 'add_product' %}" method="post">
+    {% if product %}
+        <h2>Product Details</h2>
+        <p>Product Name: {{ product.name }}</p>
+        <p>Quantity: {{ product.quantity }}</p>
+        <p>Price: {{ product.price }}</p>
+    {% endif %}
+</form>
 
 </body>
 </html>
