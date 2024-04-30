@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .products import Products  
 from .forms import AddProductForm
+from .models import Product 
+
 
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
