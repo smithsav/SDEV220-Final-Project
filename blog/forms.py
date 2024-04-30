@@ -1,6 +1,12 @@
 from django import forms
+from .models import Product
+
 
 class AddProductForm(forms.Form):
-    product_name = forms.CharField(max_length=100)
-    product_quantity = forms.IntegerField()
-    product_price = forms.DecimalField()
+    class Meta:
+        model = Product
+        fields = ['name', 'quantity', 'price']
+
+def view_inventory(request):
+    products = Product.objects.all()
+    return render(request, 'view_inventory.html', {'products': products})
