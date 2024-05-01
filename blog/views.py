@@ -10,12 +10,12 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = AddProductForm(request.POST)
         if form.is_valid():
             form.save()  
             return redirect('view_inventory')  
     else:
-        form = ProductForm()
+        form = AddProductForm()
     
     return render(request, 'add_product.html', {'form': form})
 
