@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .products import Products  
+from .products import Products
 from .forms import AddProductForm
 from .models import Product
 from .inventory import Inventory 
