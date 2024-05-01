@@ -9,14 +9,15 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST':
-        form = AddProductForm(request.POST)
-        if form.is_valid():
-            form.save()  
-            return redirect('view_inventory')  
-    else:
-        form = AddProductForm()
-    
-    return render(request, 'add_products.html', {'form': form})
+        name = request.POST['product_name']
+        quantity = request.POST['product_quantity']
+        price = request.POST['product_price']
+        product = Product.objects.create(name=name, quantity=quantity, price=price)
+        product.save()
+        return redirect('add_product')
+
+    products = Product.objects.all()
+    return render(request, 'your_template.html', {'products': products})
 
 def view_inventory(request):
     products = Product.objects.all()  

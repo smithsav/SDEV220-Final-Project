@@ -35,15 +35,24 @@
 
     {% if products %}
         <h2>Product Details</h2>
-        <ul>
-            {% for product in products %}
-                <li>
-                    <p>Product Name: {{ product.name }}</p>
-                    <p>Quantity: {{ product.quantity }}</p>
-                    <p>Price: {{ product.price }}</p>
-                </li>
-            {% endfor %}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         <p>No products available.</p>
     {% endif %}
