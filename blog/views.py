@@ -17,7 +17,7 @@ def add_product(request):
         return redirect('add_product')
 
     products = Product.objects.all()
-    return render(request, 'your_template.html', {'products': products})
+    return render(request, 'add_products.html', {'products': products})
 
 def view_inventory(request):
     products = Product.objects.all()  
