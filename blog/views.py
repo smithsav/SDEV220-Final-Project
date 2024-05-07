@@ -1,8 +1,23 @@
 from django.shortcuts import render , redirect
+from django.utils import timezone
 from .products import Products
 from .forms import ProductForm
 from .models import Product
 from .inventory import Inventory 
+from .forms import PostForm
+
+def post_new(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
 
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
@@ -12,6 +27,7 @@ def add_product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('add_product')  
     else:
         form = ProductForm()
 
