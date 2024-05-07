@@ -3,10 +3,10 @@ from .models import Product
 from django.shortcuts import render , redirect
 
 
-class AddProductForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'quantity', 'price']
+        fields = ['product_name', 'product_quantity', 'product_price']
 
 def view_inventory(request):
     products = Product.objects.all()
