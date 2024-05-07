@@ -9,6 +9,7 @@ urlpatterns = [
     path('view_inventory/', views.view_inventory, name='view_inventory'),
     path('record_sale/', views.record_sale, name='record_sale'),
     path('customer/', views.customer, name='customer'),
+    path('add_customer/', add_customer_view, name='add_customerID'),
 ]
 
 if settings.DEBUG:
