@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Record Sales</title>
+    <title>Customer Information</title>
 </head>
 <body>
 
@@ -18,19 +18,17 @@
         </ul>
     </section>
 
-<h1>Record Sales</h1>
+<h1>Search Customer</h1>
 
-<form action="{% url 'record_sales %}" method="post">
-    <label for="product_quantity">Product Quantity:</label><br>
-    <input type="text" id="product_quantity" name="product_quantity"><br>
-    <label for="subtotal">Subtotal:</label><br>
-    <input type="number" id="subtotal" name="subtotal"><br>
-    <label for="tax">Tax:</label><br>
-    <input type="number" id="tax" name="tax"><br><br>  
-    <label for="operation">Select operation:</label>
-    <select id="operation" name="operation" required>
-      <option value="+">Add</option>
-    </select><br>
-    <label for="totalsales">Total Sales: $ </label><br>
-    <input type="submit" value="Calculate">
+
+<form action="{% url 'customer' %}" method="post">
+   <label for="customerFname">First Name:</label><br>
+   <input type="text" id="customerFname" name="customerFname" required><br>
+   <label for="customerLname">Last Name:</label><br>
+   <input type="text" id="customerLname" name="subtotal" required><br>
+   <label for="customerAddress">Address:</label><br>
+   <input type="text" id="customerAddress" name="customerAddress"><br><br>  
+   <label for="customerNumber">Phone Number:  </label>
+   <input type="number" id="customerNumber" name="customerNumber">
+   <input type= "search" value="Search Customer">
 </form>
