@@ -1,5 +1,6 @@
 from django import forms
 from .models import Product
+from django.shortcuts import render , redirect
 
 
 class AddProductForm(forms.ModelForm):
