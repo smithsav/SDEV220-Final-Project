@@ -15,7 +15,7 @@ def add_product(request):
             return redirect('product_list')
     else:
         form = ProductForm()
-    return render(request, 'add_product.html', {'form': form})
+    return render(request, 'add_products.html', {'form': form})
 
 def product_list(request):
     products = Product.objects.all()
