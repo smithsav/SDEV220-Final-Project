@@ -40,11 +40,11 @@ class totalsales(models.Model):
         if not self.product:
             return{}
         subtotal = self.product.price 
-        tax_rate = Decimal(.07)
+        tax_rate = float(.07)
         tax_total = subtotal * tax_rate
-        tax_total = Decimal("%.2f" %(tax_total))     
+        tax_total = float("%.2f" %(tax_total))     
         totalsales= subtotal + tax_total
-        totalsales = Deciaml("%.2f" %(totalsales))
+        totalsales = float("%.2f" %(totalsales))
         totals = {
             "subtotal": subtotal,
             "tax": tax_total,
