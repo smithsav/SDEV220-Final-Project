@@ -19,6 +19,10 @@ def add_product(request):
     products = Product.objects.all()
     return render(request, 'add_products.html', {'products': products})
 
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
+
 def view_inventory(request):
     products = Product.objects.all()  
     return render(request, 'view_inventory.html', {'products': products})
