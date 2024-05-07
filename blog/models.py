@@ -31,28 +31,28 @@ class customer(models.Model):
     customerNumber = models.IntegerField()
 
 class totalsales(models.Model):
-    product_quantity = models.ForeignObject(Product, null=True, on_delete=models.SET_NULL)
+    product_quantity = models.IntegerField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     toal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
-    def calculate(self, save=False):
-        if not self.product:
-            return{}
-        subtotal = self.product.price 
-        tax_rate = float(.07)
-        tax_total = subtotal * tax_rate
-        tax_total = float("%.2f" %(tax_total))     
-        totalsales= subtotal + tax_total
-        totalsales = float("%.2f" %(totalsales))
-        totals = {
-            "subtotal": subtotal,
-            "tax": tax_total,
-            "totalsales": totalsales,
-            }  
+    # def calculate(self, save=False):
+    #     if not self.product:
+    #         return{}
+    #     subtotal = self.product.price 
+    #     tax_rate = float(.07)
+    #     tax_total = subtotal * tax_rate
+    #     tax_total = float("%.2f" %(tax_total))     
+    #     totalsales= subtotal + tax_total
+    #     totalsales = float("%.2f" %(totalsales))
+    #     totals = {
+    #         "subtotal": subtotal,
+    #         "tax": tax_total,
+    #         "totalsales": totalsales,
+    #         }  
         
-        for k,v in totals.items():
-            setattr(self, k, v)
-            if save==True:
-                self.save()
-        return totals
+    #     for k,v in totals.items():
+    #         setattr(self, k, v)
+    #         if save==True:
+    #             self.save()
+    #     return totals
