@@ -4,6 +4,21 @@ from django.utils import timezone
 from django.db.models.signals import pre_save
 
 
+class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
@@ -25,11 +40,11 @@ class totalsales(models.Model):
         if not self.product:
             return{}
         subtotal = self.product.price 
-        tax_rate = .07
+        tax_rate = Decimal(.07)
         tax_total = subtotal * tax_rate
-        tax_total = float("%.2f" %(tax_total))     
-        totalsales= price + tax_total
-        totalsales = float ("%.2f" %(totalsales))
+        tax_total = Decimal("%.2f" %(tax_total))     
+        totalsales= subtotal + tax_total
+        totalsales = Deciaml("%.2f" %(totalsales))
         totals = {
             "subtotal": subtotal,
             "tax": tax_total,
