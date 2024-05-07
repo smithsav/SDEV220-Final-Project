@@ -1,22 +1,23 @@
 from django.shortcuts import render , redirect
-from django.utils import timezone
 from .products import Products
-from .forms import ProductForm
+from .forms import AddProductForm
 from .models import Product
 from .inventory import Inventory 
 
+def post_list(request):
+    return render(request, 'blog/post_list.html', {})
+
 def add_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('add_product')  
-    else:
-        form = ProductForm()
+        name = request.POST['product_name']
+        quantity = request.POST['product_quantity']
+        price = request.POST['product_price']
+        product = Product.objects.create(name=name, quantity=quantity, price=price)
+        product.save()
+        return redirect('add_product')
 
     products = Product.objects.all()
-
-    return render(request, 'add_products.html', {'form': form, 'products': products})
+    return render(request, 'add_products.html', {'products': products})
 
 def view_inventory(request):
     products = Product.objects.all()  
@@ -25,6 +26,5 @@ def view_inventory(request):
 def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
 
-def add_customerID(request):
-    return render(request, 'blog/add_customerID.html', {})
-
+def customer(request):
+    return render(request, 'blog/customer.html', {})

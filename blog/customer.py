@@ -6,13 +6,13 @@ class customer():
         self.customerAddress = None
         self.customerNumber = None
           
-    def customer_details(self, customerFName, customerLName, customerAddress, customerNumber, customerpayment, customerID):
+    def customer_details(self, customerFName, customerLName, customerAddress, customerNumber):
         self.customerFName = customerFName
         self.customerLName = customerLName
         self.customerAddress = customerAddress
         self.customerNumber = customerNumber
                 
-    def remove_customer(self, customerID):
+    def remove_customer(self, customer):
         self.removecusmter = customer
     
     def main(self):
