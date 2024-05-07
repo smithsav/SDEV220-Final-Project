@@ -24,7 +24,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-class Customer(models.Model):
+class customer(models.Model):
     customerFname = models.TextField(blank=True, null=True)
     customerLname = models.TextField(blank=True, null=True)
     sutomerAddress = models.TextField(blank=True, null=True)
