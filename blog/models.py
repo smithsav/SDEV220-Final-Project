@@ -5,9 +5,9 @@ from django.db.models.signals import pre_save
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    product_name = models.CharField(max_length=100)
+    product_quantity = models.IntegerField()
+    product_price = models.DecimalField(max_digits=10, decimal_places=2)
 
 class Customer(models.Model):
     customerFname = models.TextField(blank=True, null=True)
