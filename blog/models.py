@@ -28,7 +28,7 @@ class Customer(models.Model):
     customerFname = models.TextField(blank=True, null=True)
     customerLname = models.TextField(blank=True, null=True)
     sutomerAddress = models.TextField(blank=True, null=True)
-    customerNumber = models.IntegerField(max_digit=10)
+    customerNumber = models.IntegerField()
 
 class totalsales(models.Model):
     product_quantity = models.ForeignObject(Product, null=True, on_delete=models.SET_NULL)
