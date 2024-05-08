@@ -11,19 +11,46 @@
         <h2>Main Features</h2>
         <ul>
             <li><a href="{% url 'base' %}">Home</a></li>
-            <li><a href="{% url 'add_products' %}">Add Product</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
+            <li><a href="{% url 'add_product' %}">Add Product</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
             <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
             <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
             <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
         </ul>
     </section>
     
-    <h1>Add Product</h1>
-    <form method="post">
+    <h1>Add Products</h1>
+
+    <form action="{% url 'add_product' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Product</button>
+        <input type="submit" value="Add Product">
     </form>
+
+    <h1>Products</h1>
+
+    {% if products %}
+        <h2>Product Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
 
 </body>
 </html>
