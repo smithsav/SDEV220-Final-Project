@@ -14,7 +14,7 @@ def add_product(request):
             name = request.POST['name']
             quantity = request.POST['quantity']
             price = request.POST['price']
-            new_product = Product.objects.create(name=name, quantity=quantity, price=price)
+            new_product = product.objects.create(name=name, quantity=quantity, price=price)
             new_product.save()
             return redirect('add_product')
         except KeyError:
