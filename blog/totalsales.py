@@ -1,6 +1,6 @@
 
 
-class TotalSales:
+class totalSales:
     def __init__(self):
         self.totalsales = None
         self.totalquantity = None
