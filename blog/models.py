@@ -19,7 +19,7 @@ class Post(models.Model):
         return self.title
 
 
-class Product(models.Model):
+class product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
