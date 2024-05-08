@@ -16,7 +16,7 @@ def add_product(request):
         return redirect('add_product')
 
     products = product.objects.all()  # Changed from 'product' to 'Product'
-    return render(request, 'add_products.html', {'products': products})
+    return render(request, 'blog/add_products.html', {'products': products})
 
 def view_inventory(request):
     products = product.objects.all()  
