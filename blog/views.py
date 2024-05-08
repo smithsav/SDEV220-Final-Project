@@ -8,7 +8,6 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST'
-        product = response.POST["product"]
         name = request.POST['name']
         quantity = request.POST['quantity']
         price = request.POST['price']
