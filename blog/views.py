@@ -2,6 +2,8 @@ from django.shortcuts import render , redirect
 from .forms import ProductForm
 from .inventory import Inventory
 from .models import product
+from django.http import HttpResponse
+
 
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
