@@ -24,35 +24,36 @@ class product(models.Model):
     quantity = models.IntegerField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
 
-# class customer(models.Model):
-#     customerFname = models.TextField(blank=True, null=True)
-#     customerLname = models.TextField(blank=True, null=True)
-#     sutomerAddress = models.TextField(blank=True, null=True)
-#     customerNumber = models.IntegerField()
+# class Address(models.Model):
+#     CustomerFname = models.CharField(max_length=30)
+#     customeraddress = models.CharField(max_length=50)
+#     city = models.CharField(max_length=60, default="Miami")
+#     state = models.CharField(max_length=30, default="Florida")
+#     zipcode = models.CharField(max_length=5, default="33165")
+#     country = models.CharField(max_length=50)
 
-# class totalsales(models.Model):
-#     product_quantity = models.IntegerField()
-#     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-#     tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-#     toal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+#     class Meta:
+#         verbose_name = 'Address'
+#         verbose_name_plural = 'Address'
+
+#     def __str__(self):
+#         return self.name
+class customer(models.Model):
+    customerFname = models.TextField(blank=True, null=True)
+    customerLname = models.TextField(blank=True, null=True)
+    sutomerAddress = models.TextField(blank=True, null=True)
+    customerNumber = models.IntegerField()     
     
-#     def calculate(self, save=False):
-#         if not self.product:
-#             return{}
-#         subtotal = self.product.price 
-#         tax_rate = float(.07)
-#         tax_total = subtotal * tax_rate
-#         tax_total = float("%.2f" %(tax_total))     
-#         totalsales= subtotal + tax_total
-#         totalsales = float("%.2f" %(totalsales))
-#         totals = {
-#             "subtotal": subtotal,
-#             "tax": tax_total,
-#             "totalsales": totalsales,
-#             }  
-        
-#         for k,v in totals.items():
-#             setattr(self, k, v)
-#             if save==True:
-#                 self.save()
-#         return totals
+    def __str__(self):
+        return self.customer
+
+class record_sale(models.Model):
+    product_quantity = models.IntegerField()
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    toal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    
+    def __str__(self):
+        return self.record_sale
+    
+    

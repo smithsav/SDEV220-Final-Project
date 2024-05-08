@@ -2,8 +2,9 @@ from django.shortcuts import render , redirect
 from .forms import ProductForm
 from .inventory import Inventory
 from .models import product
+from django.http import HttpResponseRedirect
+from .forms import customer
 from django.http import HttpResponse
-
 
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
@@ -14,7 +15,7 @@ def add_product(request):
             name = request.POST['name']
             quantity = request.POST['quantity']
             price = request.POST['price']
-            new_product = product.objects.create(name=name, quantity=quantity, price=price)
+            new_product = Product.objects.create(name=name, quantity=quantity, price=price)
             new_product.save()
             return redirect('add_product')
         except KeyError:
@@ -32,4 +33,14 @@ def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
 
 def customer(request):
-    return render(request, 'blog/customer.html', {})
+    
+    if request.method == "POST":
+        form = customer(request.POST)
+        
+        if form.is_valid():
+            return HttpResponseRedirect("/customer/")
+
+    else:
+        form = customer()
+
+        return render(request, 'blog/customer.html', {"form": form})
