@@ -1,6 +1,5 @@
 from django.shortcuts import render , redirect
 from .forms import ProductForm
-from .models import Product
 from .inventory import Inventory
 from .models import product
 
@@ -12,11 +11,11 @@ def add_product(request):
         name = request.POST['name']
         quantity = request.POST['quantity']
         price = request.POST['price']
-        new_product = Product.objects.create(name=name, quantity=quantity, price=price)  # Changed variable name to 'new_product'
+        new_product = product.objects.create(name=name, quantity=quantity, price=price)  # Changed variable name to 'new_product'
         new_product.save()
         return redirect('add_product')
 
-    products = Product.objects.all()  # Changed from 'product' to 'Product'
+    products = product.objects.all()  # Changed from 'product' to 'Product'
     return render(request, 'add_products.html', {'products': products})
 
 def view_inventory(request):
