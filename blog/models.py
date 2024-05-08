@@ -22,7 +22,7 @@ class Post(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
 
     def __str__(self):
         return self.name
