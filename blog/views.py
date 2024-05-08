@@ -8,14 +8,18 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        quantity = request.POST['quantity']
-        price = request.POST['price']
-        new_product = product.objects.create(name=name, quantity=quantity, price=price)  # Changed variable name to 'new_product'
-        new_product.save()
-        return redirect('add_product')
+        try:
+            name = request.POST['name']
+            quantity = request.POST['quantity']
+            price = request.POST['price']
+            new_product = Product.objects.create(name=name, quantity=quantity, price=price)
+            new_product.save()
+            return redirect('add_product')
+        except KeyError:
+            # Handle missing fields
+            return HttpResponse("Missing required fields. Please fill in all fields.")
 
-    products = product.objects.all()  # Changed from 'product' to 'Product'
+    products = product.objects.all()
     return render(request, 'blog/add_products.html', {'products': products})
 
 def view_inventory(request):
