@@ -1,4 +1,5 @@
 
+
 class TotalSales:
     def __init__(self):
         self.totalsales = None
