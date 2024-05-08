@@ -7,8 +7,8 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {})
 
 def add_product(request):
-    if "product" in request.POST:
-        product_name = response.POST["product"]
+    if request.method == 'POST'
+        product = response.POST["product"]
         name = request.POST['name']
         quantity = request.POST['quantity']
         price = request.POST['price']
