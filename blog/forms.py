@@ -19,14 +19,13 @@ class customer(forms.Form):
     customerAddress = forms.CharField()
     customerNumber = forms.IntegerField()
 
-class record_sale(forms.Form):
+class totalsales(forms.Form):
     quantity = forms.DecimalField()
     price = forms.DecimalField()
     amount = forms.DecimalField(
-        widget=calculation.FormulaInput('quantity*price') # <- using single math expression
+        widget=calculation.FormulaInput('quantity*price')
     )
     apply_taxes = forms.BooleanField(initial=True)
     tax = forms.DecimalField(
-        # using math expression and javascript functions.
         widget=calculation.FormulaInput('apply_taxes ? parseFloat(amount/11).toFixed(2) : 0.0') 
     )
