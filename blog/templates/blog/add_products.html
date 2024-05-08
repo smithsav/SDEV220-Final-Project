@@ -20,7 +20,7 @@
     
     <h1>Add Products</h1>
 
-    <form action="{% url 'add_product' %}" method="post">
+    <form action="{% url 'add_products' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Add Product">

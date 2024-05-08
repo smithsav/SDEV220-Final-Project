@@ -8,9 +8,9 @@ def post_list(request):
 
 def add_product(request):
     if request.method == 'POST':
-        name = request.POST['product_name']
-        quantity = request.POST['product_quantity']
-        price = request.POST['product_price']
+        name = request.POST['name']
+        quantity = request.POST['quantity']
+        price = request.POST['price']
         product = Product.objects.create(name=name, quantity=quantity, price=price)
         product.save()
         return redirect('add_product')
