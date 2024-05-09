@@ -7,6 +7,9 @@ from .forms import customer
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
+def base(request):
+    return render(request, 'base.html')
+
 def post_list(request):
     return render(request, 'blog/post_list.html', {})
 
