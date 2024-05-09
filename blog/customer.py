@@ -1,3 +1,5 @@
+from .forms import customer
+from .models import customer
 
 class customer():
     def __init__(self):
