@@ -38,7 +38,7 @@ def customer(request):
         form = customer(request.POST)
         
         if form.is_valid():
-            return HttpResponseRedirect("/customer/")
+            return HttpResponseRedirect("blog/customer.html")
 
     else:
         form = customer()
