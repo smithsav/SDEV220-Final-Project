@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Product</title>
 </head>
+<body>
 
 <div class="container">
     <header>
@@ -14,19 +15,20 @@
 
     <section>
         <h2>Main Features</h2>
-        <li><a href="{% url 'base' %}">Home</a></li>
-        <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
-        <li><a href="{% url 'update_product' %}">Update Product</a> - </li>Update products in inventory.
-        <li><a href="{% url 'product_list' %}">Product List</a> - </li>List of all products.
-        <li><a href="{% url 'delete_product' %}">Delete Product</a> - </li>Delete products in inventory.
-        <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
-        <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
-        <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
+        <ul>
+            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
+            <li><a href="{% url 'update_product' %}">Update Product</a> - Update products in inventory.</li>
+            <li><a href="{% url 'product_list' %}">Product List</a> - List of all products.</li>
+            <li><a href="{% url 'delete_product' %}">Delete Product</a> - Delete products in inventory.</li>
+            <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
+            <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
+            <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
         </ul>
     </section>
 </div>
 
-<body>
+<div class="container">
     <h1>Delete Product</h1>
     <p>Are you sure you want to delete the product "{{ product.name }}"?</p>
     <form method="post">
@@ -34,5 +36,7 @@
         <button type="submit">Delete</button>
         <a href="{% url 'product_list' %}">Cancel</a>
     </form>
+</div>
+
 </body>
 </html>

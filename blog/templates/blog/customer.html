@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Information</title>
-</head>
+ </head>
 <body>
 
 <div class="container">
@@ -15,31 +15,43 @@
 
     <section>
         <h2>Main Features</h2>
-        <li><a href="{% url 'base' %}">Home</a></li>
-        <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
-        <li><a href="{% url 'update_product' %}">Update Product</a> - </li>Update products in inventory.
-        <li><a href="{% url 'product_list' %}">Product List</a> - </li>List of all products.
-        <li><a href="{% url 'delete_product' %}">Delete Product</a> - </li>Delete products in inventory.
-        <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
-        <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
-        <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
+        <ul>
+            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
+            <li><a href="{% url 'update_product' %}">Update Product</a> - Update products in inventory.</li>
+            <li><a href="{% url 'product_list' %}">Product List</a> - List of all products.</li>
+            <li><a href="{% url 'delete_product' %}">Delete Product</a> - Delete products in inventory.</li>
+            <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
+            <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
+            <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
         </ul>
     </section>
 </div>
 
 <h1>Search Customer</h1>
 
+{% if success_message %}
+<div class="alert alert-success" role="alert">
+    {{ success_message }}
+</div>
+{% endif %}
+
 
 <form action="{% url 'customer' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-   <label for="customerFname">First Name*:</label><br>
-   <input type="text" id="customerFname" name="customerFname" value = "{{customerFname}}" required><br>
-   <label for="customerLname">Last Name*:</label><br>
-   <input type="text" id="customerLname" name="customerLname" value = "{{customerLname}}"required><br>
-   <label for="customerAddress">Address:</label><br>
-   <input type="text" id="customerAddress" name="customerAddress" value = "{{customerAddress}}"><br><br>  
-   <label for="customerNumber">Phone Number:  </label>
-   <input type="number" id="customerNumber" name="customerNumber" value = "{{customerNumber}}"><br>
-   <input type= "submit" value="Search Customer">
+    {% csrf_token %}
+    <label for="id_customerFname">First Name:</label>
+    <input type="text" id="id_customerFname" name="customerFname" required>
+    <br>
+    <label for="id_customerLname">Last Name:</label>
+    <input type="text" id="id_customerLname" name="customerLname" required>
+    <br>
+    <label for="id_customerAddress">Address:</label>
+    <input type="text" id="id_customerAddress" name="customerAddress">
+    <br>
+    <label for="id_customerNumber">Phone Number:</label>
+    <input type="text" id="id_customerNumber" name="customerNumber" pattern="[0-9]{10}" title="Please enter a 10-digit phone number">
+    <br>
+    <input type="submit" value="Search Customer">
 </form>
+</body>
+</html>
