@@ -23,7 +23,7 @@ class product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=10)
 
     class Meta:
-        db_table = 'blog_product'
+        db_table = 'product'
 
 # class Address(models.Model):
 #     CustomerFname = models.CharField(max_length=30)
