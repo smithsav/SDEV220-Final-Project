@@ -1,7 +1,8 @@
 from django import forms
 from .models import product
 from django.shortcuts import render , redirect
-import calculation
+
+
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -18,13 +19,9 @@ class customer(forms.Form):
     customerAddress = forms.CharField()
     customerNumber = forms.IntegerField()
 
-class totalsales(forms.Form):
+class record_sale(forms.Form):
     quantity = forms.DecimalField()
     price = forms.DecimalField()
-    amount = forms.DecimalField(
-        widget=calculation.FormulaInput('quantity*price')
-    )
+    amount = forms.DecimalField()
     apply_taxes = forms.BooleanField(initial=True)
-    tax = forms.DecimalField(
-        widget=calculation.FormulaInput('apply_taxes ? parseFloat(amount/11).toFixed(2) : 0.0') 
-    )
+    tax = forms.DecimalField()
