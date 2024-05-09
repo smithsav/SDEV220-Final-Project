@@ -29,6 +29,32 @@ def view_inventory(request):
     products = product.objects.all()  
     return render(request, 'blog/view_inventory.html', {'products': products})
 
+def update_product(request, product_id):
+    product = product.objects.get(pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            quantity = form.cleaned_data['quantity']
+            price = form.cleaned_data['price']
+            Inventory.update_product(product_id, name, quantity, price)
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'update_product.html', {'form': form, 'product_id': product_id})
+
+def delete_product(request, product_id):
+    if request.method == 'POST':
+        Inventory.delete_product(product_id)
+        return redirect('product_list')
+    else:
+        product = product.objects.get(pk=product_id)
+        return render(request, 'delete_product.html', {'product': product})
+
+def product_list(request):
+    products = product.objects.all()
+    return render(request, 'product_list.html', {'products': products})
+
 def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
 

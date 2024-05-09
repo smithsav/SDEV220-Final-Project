@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory</title>
+    <title>Product List</title>
 </head>
 <body>
 
@@ -21,17 +21,31 @@
         </ul>
     </section>
 
-<h1>Inventory</h1>
 
-{% if products %}
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} - Quantity: {{ product.quantity }}, Price: ${{ product.price }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No products in inventory.</p>
-{% endif %}
-
+    <h1>Product List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <a href="{% url 'update_product' product.id %}">Edit</a>
+                    <a href="{% url 'delete_product' product.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_products' %}">Add Product</a>
 </body>
 </html>
