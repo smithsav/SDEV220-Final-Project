@@ -15,11 +15,21 @@ class customer():
     def remove_customer(self, customer):
         self.removecusmter = customer
     
-    def main(self):
-        customerFName = input("First Name:", customerFName)
-        customerLName = input("Last Name: ", customerLName)
-        customerAddress = input ("Address(City, State, Zip code): ", customerAddress)
-        customerNumber = int(input("Phone Number(xxx-xxx-xxxx): ", customerNumber))
-      
+    def main():
+        line = 1
+
+    customernames = open(r"customername.txt", "r")
+    customername = customernames.readlines()
+
+    searchcustomername = input("Please enter the name you want to find: ")
+    for customerFname in customername:
+        if customerFname == searchcustomername:
+            line = line + 1
+            print(f"Customer: {customerFname} \nLine No. {line + 1}")
+          
+        else:
+            print("No Customer Found, Please Try Again")
+    
+    
 
     main()  
