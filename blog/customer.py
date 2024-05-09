@@ -18,17 +18,17 @@ class customer():
     def main():
         line = 1
 
-    # customernames = open(r"customername.txt", "r")
-    # customername = customernames.readlines()
+    customernames = open(r"customername.txt", "r")
+    customername = customernames.readlines()
 
-    # searchcustomername = input("Please enter the name you want to find: ")
-    # for customerFname in customername:
-    #     if customerFname == searchcustomername:
-    #         line = line + 1
-    #         print(f"Customer: {customerFname} \nLine No. {line + 1}")
+    searchcustomername = input("Please enter the name you want to find: ")
+    for customerFname in customername:
+        if customerFname == searchcustomername:
+            line = line + 1
+            print(f"Customer: {customerFname} \nLine No. {line + 1}")
           
-    #     else:
-    #         print("No Customer Found, Please Try Again")
+        else:
+            print("No Customer Found, Please Try Again")
     
     
 
