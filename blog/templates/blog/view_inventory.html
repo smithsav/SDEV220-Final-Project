@@ -29,7 +29,7 @@
 
 <h1>Inventory</h1>
 
-{% if products %}
+{% if product %}
     <ul>
         {% for product in products %}
             <li>{{ product.name }} - Quantity: {{ product.quantity }}, Price: ${{ product.price }}</li>
