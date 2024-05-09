@@ -1,3 +1,7 @@
+from .forms import view_inventory
+
+
+
 class Inventory:
     def __init__(self):
         self.inventoryType = {}  

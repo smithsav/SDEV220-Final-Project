@@ -1,6 +1,7 @@
+from .forms import record_sale
+from .models import record_sale
 
-
-class totalSales:
+class totalsales:
     def __init__(self):
         self.totalsales = None
         self.totalquantity = None
@@ -18,7 +19,7 @@ def main():
     Thursday = int(input("Enter the store sales for Thursday: "))
     Friday = int(input("Enter the store sales for Friday: "))    
     
-    total_sales_obj = totalSales()
+    total_sales_obj = TotalSales()
     total_sales_obj.calculate_totalsales(Monday, Tuesday, Wednesday, Thursday, Friday)
     
     monday = int(input("Enter the product quantity for Monday: "))
@@ -27,7 +28,7 @@ def main():
     thursday = int(input("Enter the product quantity for Thursday: "))
     friday = int(input("Enter the product quantity for Friday: "))    
     
-    total_quantity_obj = totalSales()
+    total_quantity_obj = TotalSales()
     total_quantity_obj.calculate_totalquantity(monday, tuesday, wednesday, thursday, friday)
     
     print ("Total sales for the week are: ", total_sales_obj.totalsales)
