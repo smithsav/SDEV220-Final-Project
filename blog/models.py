@@ -22,6 +22,9 @@ class product(models.Model):
     quantity = models.IntegerField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
 
+    class Meta:
+        db_table = 'blog_product'
+
 # class Address(models.Model):
 #     CustomerFname = models.CharField(max_length=30)
 #     customeraddress = models.CharField(max_length=50)
