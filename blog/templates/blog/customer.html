@@ -27,7 +27,10 @@
 <h1>Search Customer</h1>
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="search_query" value="{{ search_query }}">
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name"><br>
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name"><br>
     <button type="submit">Search</button>
 </form>
 <ul>
