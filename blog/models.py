@@ -57,16 +57,3 @@ class record_sale(models.Model):
     def __str__(self):
         return self.record_sale
     
-class Inventory:
-    def add_product(name, quantity, price):
-        product.objects.create(name=name, quantity=quantity, price=price)
-
-    def update_product(product_id, name, quantity, price):
-        product = product.objects.get(pk=product_id)
-        product.name = name
-        product.quantity = quantity
-        product.price = price
-        product.save()
-
-    def delete_product(product_id):
-        product.objects.get(pk=product_id).delete()
