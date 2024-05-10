@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from .models import Customer
 from django.shortcuts import render
-from .forms import RecordSaleForm
+from .forms import TotalSalesForm
 from .totalsales import calculate_totalsales
 
 
@@ -39,19 +39,20 @@ def view_inventory(request):
     products = product.objects.all()  
     return render(request, 'blog/view_inventory.html', {'products': products})
 
-def record_sale(request):
+def calculate_total_sales(request):
     if request.method == 'POST':
-        form = RecordSaleForm(request.POST)
+        form = TotalSalesForm(request.POST)
         if form.is_valid():
             product_quantity = form.cleaned_data['product_quantity']
             subtotal = form.cleaned_data['subtotal']
             tax = form.cleaned_data['tax']
             operation = form.cleaned_data['operation']
+            
             total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
-            return render(request, 'blog/record_sale.html', {'total_sales': total_sales})
+            return render(request, 'total_sales.html', {'total_sales': total_sales})
     else:
-        form = RecordSaleForm()
-    return render(request, 'blog/record_sale.html', {'form': form})
+        form = TotalSalesForm()
+    return render(request, 'calculate_total_sales.html', {'form': form})
 
 
 def customer(request):

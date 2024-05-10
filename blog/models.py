@@ -41,5 +41,5 @@ class record_sale(models.Model):
     toal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
     def __str__(self):
-        return self.record_sale
+        return f"Sale Record - Quantity: {self.product_quantity}, Total: {self.total}"
     
