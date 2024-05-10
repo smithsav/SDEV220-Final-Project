@@ -3,9 +3,15 @@ from .forms import ProductForm
 from .inventory import Inventory
 from .models import product
 from django.http import HttpResponseRedirect
-from .forms import customer
+from .forms import CustomerForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from .models import Customer
+from django.shortcuts import render
+from .forms import RecordSaleForm
+from .totalsales import calculate_totalsales
+
 
 def base(request):
     return render(request, 'blog/base.html')
@@ -29,22 +35,58 @@ def add_product(request):
     products = product.objects.all()
     return render(request, 'blog/add_products.html', {'products': products})
 
-def inventory(request):
-    products = product.objects.all()
+def view_inventory(request):
+    products = product.objects.all()  
     return render(request, 'blog/view_inventory.html', {'products': products})
 
 def record_sale(request):
-    return render(request, 'blog/record_sale.html', {})
+    if request.method == 'POST':
+        form = RecordSaleForm(request.POST)
+        if form.is_valid():
+            product_quantity = form.cleaned_data['product_quantity']
+            subtotal = form.cleaned_data['subtotal']
+            tax = form.cleaned_data['tax']
+            operation = form.cleaned_data['operation']
+            total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
+            record_sale = RecordSaleForm.objects.create(
+                product_quantity=product_quantity,
+                subtotal=subtotal,
+                tax=tax,
+                total=total_sales
+            )
+            record_sale.save()
+            return redirect('record_sale')  #
+    else:
+        form = RecordSaleForm()
+    return render(request, 'record_sale.html', {'form': form})
 
 def customer(request):
-    
-    if request.method == "POST":
-        form = customer(request.POST)
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '') 
+        first_name = request.POST.get('first_name', '') 
+        last_name = request.POST.get('last_name', '') 
         
-        if form.is_valid():
-            return HttpResponseRedirect("blog/customer.html")
-
+        found_customers = []
+        with open('customername.txt', 'r') as file:
+            for line in file:
+                data = line.strip().split(',')
+                file_first_name, file_last_name, address, phone_number = data
+                
+                if (first_name.lower() in file_first_name.lower() or
+                    last_name.lower() in file_last_name.lower()):
+                    
+                    found_customers.append({
+                        'first_name': file_first_name,
+                        'last_name': file_last_name,
+                        'address': address,
+                        'phone_number': phone_number
+                    })
+        
+        return render(request, 'customer.html', {
+            'found_customers': found_customers,
+            'search_query': search_query,
+            'first_name': first_name,
+            'last_name': last_name
+        })
     else:
-        form = customer()
-
-        return render(request, 'blog/customer.html', {"form": form})
+        return render(request, 'customer.html')

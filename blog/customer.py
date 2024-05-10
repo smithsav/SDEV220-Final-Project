@@ -1,38 +1,26 @@
-from .forms import customer
-from .models import customer
+from .forms import CustomerForm  
+from .models import Customer     
+import os
+import django
 
-class customer():
-    def __init__(self):
-        self.customerFName = None
-        self.customerLName = None
-        self.customerAddress = None
-        self.customerNumber = None
-          
-    def customer_details(self, customerFName, customerLName, customerAddress, customerNumber):
-        self.customerFName = customerFName
-        self.customerLName = customerLName
-        self.customerAddress = customerAddress
-        self.customerNumber = customerNumber
-                
-    def remove_customer(self, customer):
-        self.removecusmter = customer
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
+django.setup()
+
+def main():
+    populate_customers_from_file('customername.txt')
+    print('Customers populated successfully')
     
-    def main():
-        line = 1
-
-    customernames = open(r"customername.txt", "r")
-    customername = customernames.readlines()
-
-    searchcustomername = input("Please enter the name you want to find: ")
-    for customerFname in customername:
-        if customerFname == searchcustomername:
-            line = line + 1
-            print(f"Customer: {customerFname} \nLine No. {line + 1}")
-          
-        else:
-            print("No Customer Found, Please Try Again")
-    
-    
-
-       
-    main()  
+def populate_customers_from_file(file_path):
+    with open(file_path, 'r') as file:
+        for line in file:
+            data = line.strip().split(',')
+            first_name, last_name, address, phone_number = data
+            Customer.objects.create(
+                first_name=first_name,
+                last_name=last_name,
+                address=address,
+                phone_number=phone_number
+            )
+            
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,5 @@
 from django import forms
-from .models import product
+from .models import product, Customer
 from django.shortcuts import render , redirect
 
 
@@ -13,15 +13,13 @@ def view_inventory(request):
     products = product.objects.all()
     return render(request, 'view_inventory.html', {'products': products})
 
-class customer(forms.Form):
-    customerFname = forms.CharField(max_length = 200)
-    customerLname = forms.CharField(max_length = 200)
-    customerAddress = forms.CharField()
-    customerNumber = forms.IntegerField()
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['first_name', 'last_name', 'address', 'phone_number']
 
-class record_sale(forms.Form):
-    quantity = forms.DecimalField()
-    price = forms.DecimalField()
-    amount = forms.DecimalField()
-    apply_taxes = forms.BooleanField(initial=True)
-    tax = forms.DecimalField()
+class RecordSaleForm(forms.Form):
+    product_quantity = forms.IntegerField()
+    subtotal = forms.DecimalField(max_digits=10, decimal_places=2)
+    tax = forms.DecimalField(max_digits=10, decimal_places=2)
+    operation = forms.ChoiceField(choices=(('+', 'Add'), ('-', 'Subtract')))
