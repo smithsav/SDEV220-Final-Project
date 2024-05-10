@@ -6,6 +6,11 @@ from django.http import HttpResponseRedirect
 from .forms import customer
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from .models import Customer
+from django.shortcuts import render
+from .forms import RecordSaleForm
+from .totalsales import calculate_totalsales
 
 def base(request):
     return render(request, 'blog/base.html')
@@ -29,22 +34,31 @@ def add_product(request):
     products = product.objects.all()
     return render(request, 'blog/add_products.html', {'products': products})
 
-def inventory(request):
-    products = product.objects.all()
+def view_inventory(request):
+    products = product.objects.all()  
     return render(request, 'blog/view_inventory.html', {'products': products})
 
 def record_sale(request):
-    return render(request, 'blog/record_sale.html', {})
+    if request.method == 'POST':
+        form = RecordSaleForm(request.POST)
+        if form.is_valid():
+            # Retrieve form data
+            product_quantity = form.cleaned_data['product_quantity']
+            subtotal = form.cleaned_data['subtotal']
+            tax = form.cleaned_data['tax']
+            operation = form.cleaned_data['operation']
+
+            # Call function from totalsales.py
+            total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
+
+            # Process total_sales as needed
+
+            return render(request, 'record_sale.html', {'total_sales': total_sales})
+    else:
+        form = RecordSaleForm()
+    return render(request, 'record_sale.html', {'form': form})
+
 
 def customer(request):
-    
-    if request.method == "POST":
-        form = customer(request.POST)
-        
-        if form.is_valid():
-            return HttpResponseRedirect("blog/customer.html")
-
-    else:
-        form = customer()
-
-        return render(request, 'blog/customer.html', {"form": form})
+    customers = Customer.objects.all()
+    return render(request, 'customer.html', {'customers': customers})

@@ -1,7 +1,8 @@
-from .forms import customer
-from .models import customer
 
-class customer():
+from .forms import CustomerForm  # Assuming your form is named CustomerForm
+from .models import Customer     # Assuming your model is named Customer
+
+class CustomerManager:
     def __init__(self):
         self.customerFName = None
         self.customerLName = None
@@ -15,24 +16,17 @@ class customer():
         self.customerNumber = customerNumber
                 
     def remove_customer(self, customer):
-        self.removecusmter = customer
+        self.removecustomer = customer
     
-    def main():
+    def search_customer(self, search_name):
+        customer_names = open(r"customername.txt", "r").readlines()
         line = 1
-
-    customernames = open(r"customername.txt", "r")
-    customername = customernames.readlines()
-
-    searchcustomername = input("Please enter the name you want to find: ")
-    for customerFname in customername:
-        if customerFname == searchcustomername:
-            line = line + 1
-            print(f"Customer: {customerFname} \nLine No. {line + 1}")
-          
-        else:
+        found = False
+        for customerFname in customer_names:
+            if customerFname.strip() == search_name:
+                found = True
+                print(f"Customer: {customerFname.strip()} \nLine No. {line + 1}")
+                break
+            line += 1
+        if not found:
             print("No Customer Found, Please Try Again")
-    
-    
-
-       
-    main()  

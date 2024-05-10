@@ -19,7 +19,7 @@ class customer(forms.Form):
     customerAddress = forms.CharField()
     customerNumber = forms.IntegerField()
 
-class record_sale(forms.Form):
+class RecordSaleForm(forms.Form):
     quantity = forms.DecimalField()
     price = forms.DecimalField()
     amount = forms.DecimalField()

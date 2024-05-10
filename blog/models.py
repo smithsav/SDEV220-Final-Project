@@ -22,35 +22,17 @@ class product(models.Model):
     quantity = models.IntegerField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
 
-    def __str__(self):
-        return self.name
-
     class Meta:
-        verbose_name = 'product'
-        verbose_name_plural = 'products'
+        db_table = 'product'
 
-# class Address(models.Model):
-#     CustomerFname = models.CharField(max_length=30)
-#     customeraddress = models.CharField(max_length=50)
-#     city = models.CharField(max_length=60, default="Miami")
-#     state = models.CharField(max_length=30, default="Florida")
-#     zipcode = models.CharField(max_length=5, default="33165")
-#     country = models.CharField(max_length=50)
+class Customer(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
 
-#     class Meta:
-#         verbose_name = 'Address'
-#         verbose_name_plural = 'Address'
-
-#     def __str__(self):
-#         return self.name
-class customer(models.Model):
-    customerFname = models.TextField(blank=True, null=True)
-    customerLname = models.TextField(blank=True, null=True)
-    sutomerAddress = models.TextField(blank=True, null=True)
-    customerNumber = models.IntegerField()     
-    
     def __str__(self):
-        return self.customer
+        return f"{self.first_name} {self.last_name}"
 
 class record_sale(models.Model):
     product_quantity = models.IntegerField()
