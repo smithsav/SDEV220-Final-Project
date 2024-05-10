@@ -3,7 +3,7 @@ from .forms import ProductForm
 from .inventory import Inventory
 from .models import product
 from django.http import HttpResponseRedirect
-from .forms import customer
+from .forms import CustomerForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
@@ -42,16 +42,14 @@ def record_sale(request):
     if request.method == 'POST':
         form = RecordSaleForm(request.POST)
         if form.is_valid():
-            # Retrieve form data
+            
             product_quantity = form.cleaned_data['product_quantity']
             subtotal = form.cleaned_data['subtotal']
             tax = form.cleaned_data['tax']
             operation = form.cleaned_data['operation']
 
-            # Call function from totalsales.py
+            
             total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
-
-            # Process total_sales as needed
 
             return render(request, 'record_sale.html', {'total_sales': total_sales})
     else:
@@ -60,5 +58,5 @@ def record_sale(request):
 
 
 def customer(request):
-    customers = Customer.objects.all()
+    customers = CustomerForm.objects.all()
     return render(request, 'customer.html', {'customers': customers})
