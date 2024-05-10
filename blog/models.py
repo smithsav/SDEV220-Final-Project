@@ -34,12 +34,12 @@ class Customer(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-class record_sale(models.Model):
+class RecordSale(models.Model):
     product_quantity = models.IntegerField()
-    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    toal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    tax = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+
     def __str__(self):
         return f"Sale Record - Quantity: {self.product_quantity}, Total: {self.total}"
     

@@ -18,8 +18,8 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = ['first_name', 'last_name', 'address', 'phone_number']
 
-class TotalSalesForm(forms.Form):
-    product_quantity = forms.IntegerField(label='Product Quantity')
-    subtotal = forms.DecimalField(label='Subtotal')
-    tax = forms.DecimalField(label='Tax')
-    operation = forms.ChoiceField(choices=(('+', 'Add'), ('-', 'Subtract')), label='Operation')
+class RecordSaleForm(forms.Form):
+    product_quantity = forms.IntegerField()
+    subtotal = forms.DecimalField(max_digits=10, decimal_places=2)
+    tax = forms.DecimalField(max_digits=10, decimal_places=2)
+    operation = forms.ChoiceField(choices=(('+', 'Add'), ('-', 'Subtract')))
