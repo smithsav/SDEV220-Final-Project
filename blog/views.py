@@ -55,17 +55,8 @@ def record_sale(request):
 
 
 def customer(request):
-    with open('customername.txt', 'r') as file:
-        for line in file:
-            data = line.strip().split(',')
-            first_name, last_name, address, phone_number = data
-            Customer.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                address=address,
-                phone_number=phone_number
-            )
-    return render(request, 'customer.html')
+    customers = Customer.objects.all()
+    return render(request, 'customer.html', {'customers': customers})
 
 
 

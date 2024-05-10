@@ -1,7 +1,10 @@
 from .forms import CustomerForm  
 from .models import Customer     
 
-
+def main():
+    populate_customers_from_file('customername.txt')
+    print('Customers populated successfully')
+    
 def populate_customers_from_file(file_path):
     with open(file_path, 'r') as file:
         for line in file:
@@ -13,9 +16,6 @@ def populate_customers_from_file(file_path):
                 address=address,
                 phone_number=phone_number
             )
-def main():
-    populate_customers_from_file('customername.txt')
-    print('Customers populated successfully')
-
+            
 if __name__ == "__main__":
     main()
