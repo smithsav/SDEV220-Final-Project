@@ -25,6 +25,11 @@
 </div>
 
 <h1>Search Customer</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="search_query" value="{{ search_query }}">
+    <button type="submit">Search</button>
+</form>
 <ul>
     {% for customer in found_customers %}
         <li>{{ customer.first_name }} {{ customer.last_name }} - {{ customer.address }} - {{ customer.phone_number }}</li>
