@@ -1,7 +1,7 @@
 
 from .forms import CustomerForm  
 from .models import Customer     
-class CustomerManager:
+class Customer:
     def __init__(self):
         self.customerFName = None
         self.customerLName = None

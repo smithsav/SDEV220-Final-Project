@@ -42,21 +42,16 @@ def record_sale(request):
     if request.method == 'POST':
         form = RecordSaleForm(request.POST)
         if form.is_valid():
-            
             product_quantity = form.cleaned_data['product_quantity']
             subtotal = form.cleaned_data['subtotal']
             tax = form.cleaned_data['tax']
             operation = form.cleaned_data['operation']
-
-            
             total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
-
-            return render(request, 'record_sale.html', {'total_sales': total_sales})
+            return render(request, 'blog/record_sale.html', {'total_sales': total_sales})
     else:
         form = RecordSaleForm()
-    return render(request, 'record_sale.html', {'form': form})
-
+    return render(request, 'blog/record_sale.html', {'form': form})
 
 def customer(request):
-    customers = CustomerForm.objects.all()
-    return render(request, 'customer.html', {'customers': customers})
+    customers = Customer.objects.all()
+    return render(request, 'blog/customer.html', {'customers': customers})
