@@ -48,7 +48,6 @@ def record_sale(request):
             tax = form.cleaned_data['tax']
             operation = form.cleaned_data['operation']
             total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
-            # Save to database
             record_sale = RecordSaleForm.objects.create(
                 product_quantity=product_quantity,
                 subtotal=subtotal,
@@ -56,14 +55,14 @@ def record_sale(request):
                 total=total_sales
             )
             record_sale.save()
-            return redirect('record_sale')  # Redirect to the same page after recording sale
+            return redirect('record_sale')  #
     else:
         form = RecordSaleForm()
     return render(request, 'record_sale.html', {'form': form})
 
 def customer(request):
     if request.method == 'POST':
-        search_query = request.POST.get('search_query', '')  # Get the search query from the form
+        search_query = request.POST.get('search_query', '') 
         found_customers = []
         with open('customername.txt', 'r') as file:
             for line in file:
