@@ -25,29 +25,14 @@
 </div>
 
 <h1>Search Customer</h1>
-
-
-<body>
-    <h1>Customers</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-            </tr>
-        </thead>
-        <tbody>
+ <body>
+        <h1>Customer Information</h1>
+        <ul>
             {% for customer in customers %}
-            <tr>
-                <td>{{ customer.first_name }}</td>
-                <td>{{ customer.last_name }}</td>
-                <td>{{ customer.address }}</td>
-                <td>{{ customer.phone_number }}</td>
-            </tr>
+                <li>{{ customer.first_name }} {{ customer.last_name }} - {{ customer.address }} - {{ customer.phone_number }}</li>
             {% endfor %}
-        </tbody>
-    </table>
+        </ul>
+    </body>
+    </html>
 </body>
 </html>
