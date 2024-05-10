@@ -61,11 +61,15 @@ def record_sale(request):
         form = RecordSaleForm()
     return render(request, 'record_sale.html', {'form': form})
 
-
-
 def customer(request):
-    customers = Customer.objects.all()
-    return render(request, 'customer.html', {'customers': customers})
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        
+        if form.is_valid():
+            return HttpResponseRedirect("blog/customer.html")
+    else:
+        form = CustomerForm()
 
+    return render(request, 'blog/customer.html', {"form": form})
 
 
