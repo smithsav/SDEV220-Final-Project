@@ -17,29 +17,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-class product(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
     price = models.DecimalField(decimal_places=2, max_digits=10)
 
-    class Meta:
-        db_table = 'product'
-
-# class Address(models.Model):
-#     CustomerFname = models.CharField(max_length=30)
-#     customeraddress = models.CharField(max_length=50)
-#     city = models.CharField(max_length=60, default="Miami")
-#     state = models.CharField(max_length=30, default="Florida")
-#     zipcode = models.CharField(max_length=5, default="33165")
-#     country = models.CharField(max_length=50)
-
-#     class Meta:
-#         verbose_name = 'Address'
-#         verbose_name_plural = 'Address'
-
-#     def __str__(self):
-#         return self.name
-class customer(models.Model):
+class Customer(models.Model):
     customerFname = models.TextField(blank=True, null=True)
     customerLname = models.TextField(blank=True, null=True)
     sutomerAddress = models.TextField(blank=True, null=True)
@@ -48,7 +31,7 @@ class customer(models.Model):
     def __str__(self):
         return self.customer
 
-class record_sale(models.Model):
+class Record_sale(models.Model):
     product_quantity = models.IntegerField()
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     tax = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
@@ -58,15 +41,18 @@ class record_sale(models.Model):
         return self.record_sale
     
 class Inventory:
+    @staticmethod
     def add_product(name, quantity, price):
         product.objects.create(name=name, quantity=quantity, price=price)
 
+    @staticmethod
     def update_product(product_id, name, quantity, price):
-        product = product.objects.get(pk=product_id)
-        product.name = name
-        product.quantity = quantity
-        product.price = price
-        product.save()
+        product_instance = product.objects.get(pk=product_id)
+        product_instance.name = name
+        product_instance.quantity = quantity
+        product_instance.price = price
+        product_instance.save()
 
+    @staticmethod
     def delete_product(product_id):
         product.objects.get(pk=product_id).delete()
