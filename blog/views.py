@@ -12,6 +12,7 @@ from django.shortcuts import render
 from .forms import RecordSaleForm
 from .totalsales import calculate_totalsales
 
+
 def base(request):
     return render(request, 'blog/base.html')
 
@@ -56,3 +57,6 @@ def record_sale(request):
 def customer(request):
     customers = Customer.objects.all()
     return render(request, 'search_customer.html', {'customers': customers})
+
+
+
