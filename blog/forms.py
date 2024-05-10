@@ -13,7 +13,7 @@ def view_inventory(request):
     products = product.objects.all()
     return render(request, 'view_inventory.html', {'products': products})
 
-class CustomerForm(forms.Form):
+class customer(forms.Form):
     customerFname = forms.CharField(max_length = 200)
     customerLname = forms.CharField(max_length = 200)
     customerAddress = forms.CharField()

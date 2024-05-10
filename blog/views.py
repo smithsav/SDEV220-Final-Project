@@ -3,7 +3,7 @@ from .forms import ProductForm
 from .inventory import Inventory
 from .models import product
 from django.http import HttpResponseRedirect
-from .forms import CustomerForm
+from .forms import customer
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
@@ -65,13 +65,14 @@ def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
 
 def customer(request):
+    
     if request.method == "POST":
-        form = CustomerForm(request.POST)
+        form = customer(request.POST)
         
         if form.is_valid():
-                return render(request, 'blog/customer.html', {"form": form, "success_message": "Form submitted successfully!"})
+            return HttpResponseRedirect("blog/customer.html")
 
     else:
-        form = CustomerForm()
+        form = customer()
 
-    return render(request, 'blog/customer.html', {"form": form})
+        return render(request, 'blog/customer.html', {"form": form})

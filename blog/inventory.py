@@ -1,31 +1,28 @@
 class Inventory:
     def __init__(self):
-        self.__inventoryType = {}  
+        self.inventoryType = {}  
 
-    def inventory_types(self):
-        
-        return list(self.__inventoryType.keys())
+    def inventory_type(self):
+        return self.inventoryType.keys()
 
-    def inventory_quantities(self):
-       
-        return list(self.__inventoryType.values())
+    def inventory_quantity(self):
+        return self.inventoryType.values()
 
-    def inventory_price(self, inventory_type):
-        
-        if inventory_type in self.__inventoryType:
-            return self.__inventoryType[inventory_type][1]
+    def inventory_price(self, inventoryType):
+        if inventoryType in self.inventoryType:
+            return self.inventoryType[inventoryType][1]
         else:
-            raise KeyError("Inventory type not found.")
+            print("Inventory type not found.")
 
-    def order_amount(self, inventory_type, quantity):
-        
-        if inventory_type in self.__inventoryType:
-            available_quantity, price_per_unit = self.__inventoryType[inventory_type]
+    def order_amount(self, inventoryType, quantity):
+        if inventoryType in self.inventoryType:
+            available_quantity = self.inventoryType[inventoryType][0]
+            price_per_unit = self.inventoryType[inventoryType][1]
             if available_quantity >= quantity:
                 total_price = price_per_unit * quantity
-                print(f"Order placed for {quantity} units of {inventory_type}. Total amount: ${total_price}")
-                self.__inventoryType[inventory_type][0] -= quantity
+                print(f"Order placed for {quantity} units of {inventoryType}. Total amount: ${total_price}")
+                self.inventoryType[inventoryType][0] -= quantity
             else:
-                print(f"Insufficient stock. Only {available_quantity} units of {inventory_type} available.")
+                print(f"Insufficient stock. Only {available_quantity} units of {inventoryType} available.")
         else:
-            raise KeyError("Inventory type not found.")
+            print("Inventory type not found.")

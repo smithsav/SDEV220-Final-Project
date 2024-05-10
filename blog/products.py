@@ -1,51 +1,47 @@
-class Product:
-    def __init__(self, name, quantity, price):
-        self.name = name
-        self.quantity = quantity
-        self.price = price
-
-    def order(self, quantity):
-        if self.quantity >= quantity:
-            print(f"{quantity} {self.name}(s) ordered successfully.")
-            self.quantity -= quantity
-        else:
-            print(f"Insufficient stock. Only {self.quantity} {self.name}(s) available.")
-
-    def update(self, quantity=None, price=None):
-        if quantity is not None:
-            self.quantity = quantity
-        if price is not None:
-            self.price = price
-        print(f"{self.name} updated successfully.")
-
-    def __str__(self):
-        return f"Product Name: {self.name}, Quantity: {self.quantity}, Price: {self.price}"
-
-class Inventory:
+class product:
     def __init__(self):
-        self.products = {}
-
-    def add_product(self, name, quantity, price):
-        if name in self.products:
+        self.product_details = {}  
+        
+    def add_product(self, product_name, product_quantity, product_price):
+        if product_name in self.product_details:
             print("Product already exists. Use update_product() to update details.")
         else:
-            self.products[name] = Product(name, quantity, price)
-            print(f"{name} added successfully.")
+            self.product_details[product_name] = [product_quantity, product_price]
+            print(f"{product_name} added successfully.")
 
-    def remove_product(self, name):
-        if name in self.products:
-            del self.products[name]
-            print(f"{name} removed successfully.")
+    def remove_product(self, product_name):
+        if product_name in self.product_details:
+            del self.product_details[product_name]
+            print(f"{product_name} removed successfully.")
         else:
             print("Product not found.")
 
-    def update_product(self, name, quantity=None, price=None):
-        if name in self.products:
-            self.products[name].update(quantity, price)
+    def update_product(self, product_name, product_quantity=None, product_price=None):
+        if product_name in self.product_details:
+            if product_quantity is not None:
+                self.product_details[product_name][0] = product_quantity
+            if product_price is not None:
+                self.product_details[product_name][1] = product_price
+            print(f"{product_name} updated successfully.")
         else:
             print("Product not found.")
 
-    def get_product_detail(self, name):
-        if name in self.products:
-            print(self.products[name])
+    def order_product(self, product_name, quantity):
+        if product_name in self.product_details:
+            available_quantity = self.product_details[product_name][0]
+            if available_quantity >= quantity:
+                print(f"{quantity} {product_name}(s) ordered successfully.")
+                self.product_details[product_name][0] -= quantity
+            else:
+                print(f"Insufficient stock. Only {available_quantity} {product_name}(s) available.")
         else:
+            print("Product not found.")
+
+    def product_detail(self, product_name):
+        if product_name in self.product_details:
+            quantity, price = self.product_details[product_name]
+            print(f"Product Name: {product_name}")
+            print(f"Quantity: {quantity}")
+            print(f"Price: {price}")
+        else:
+            print("Product not found.")
