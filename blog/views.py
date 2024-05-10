@@ -61,16 +61,7 @@ def record_sale(request):
         form = RecordSaleForm()
     return render(request, 'record_sale.html', {'form': form})
 
-def customer(request):
-    if request.method == "POST":
-        form = CustomerForm(request.POST)
-        
-        if form.is_valid():
-            return render(request, 'blog/customer.html', {"form": form, "success_message": "Form submitted successfully!"})
-
-    else:
-        form = CustomerForm()
-
-    return render(request, 'blog/customer.html', {"form": form})
-
+def customer(request):  # Add the 'request' parameter
+    customers = Customer.objects.all()
+    return render(request, 'customer.html', {'customers': customers})
 
