@@ -63,21 +63,30 @@ def record_sale(request):
 def customer(request):
     if request.method == 'POST':
         search_query = request.POST.get('search_query', '') 
+        first_name = request.POST.get('first_name', '') 
+        last_name = request.POST.get('last_name', '') 
+        
         found_customers = []
         with open('customername.txt', 'r') as file:
             for line in file:
                 data = line.strip().split(',')
-                first_name, last_name, address, phone_number = data
+                file_first_name, file_last_name, address, phone_number = data
                 
-                if search_query.lower() in first_name.lower() or search_query.lower() in last_name.lower():
+                if (first_name.lower() in file_first_name.lower() or
+                    last_name.lower() in file_last_name.lower()):
+                    
                     found_customers.append({
-                        'first_name': first_name,
-                        'last_name': last_name,
+                        'first_name': file_first_name,
+                        'last_name': file_last_name,
                         'address': address,
                         'phone_number': phone_number
                     })
-        first_name = request.POST.get('first_name', '') 
-        last_name = request.POST.get('last_name', '') 
-        return render(request, 'customer.html', {'found_customers': found_customers, 'search_query': search_query})
+        
+        return render(request, 'customer.html', {
+            'found_customers': found_customers,
+            'search_query': search_query,
+            'first_name': first_name,
+            'last_name': last_name
+        })
     else:
         return render(request, 'customer.html')
