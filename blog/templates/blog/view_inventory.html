@@ -24,17 +24,25 @@
     </section>
 </div>
 
-<h1>Inventory</h1>
-
-{% if product %}
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} - Quantity: {{ product.quantity }}, Price: ${{ product.price }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No products in inventory.</p>
-{% endif %}
-
+<body>
+    <h1>Inventory</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

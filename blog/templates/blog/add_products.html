@@ -36,32 +36,5 @@
         <input type="text" id="id_price" name="price"><br>
         <input type="submit" value="Add Product">
     </form>
-
-    <h1>Products</h1>
-
-    {% if product %}
-        <h2>Product Details</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>quantity</th>
-                    <th>price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.quantity }}</td>
-                        <td>{{ product.price }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No products available.</p>
-    {% endif %}
-
 </body>
 </html>

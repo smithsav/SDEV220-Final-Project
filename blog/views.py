@@ -27,11 +27,11 @@ def add_product(request):
             return HttpResponse("Missing required fields. Please fill in all fields.")
 
     products = product.objects.all()
-    return render(request, 'blog/add_products.html', {'products': products})
+    return render(request, 'blog/add_products.html', {'product': products})
 
-def view_inventory(request):
-    products = product.objects.all()  
-    return render(request, 'blog/view_inventory.html', {'products': products})
+def inventory(request):
+    products = product.objects.all()
+    return render(request, 'blog/view_inventory.html', {'product': products})
 
 def record_sale(request):
     return render(request, 'blog/record_sale.html', {})
