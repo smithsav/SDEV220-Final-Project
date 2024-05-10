@@ -1,5 +1,10 @@
 from .forms import CustomerForm  
 from .models import Customer     
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
+django.setup()
 
 def main():
     populate_customers_from_file('customername.txt')
