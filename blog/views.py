@@ -61,7 +61,22 @@ def record_sale(request):
         form = RecordSaleForm()
     return render(request, 'record_sale.html', {'form': form})
 
-def customer(request):  # Add the 'request' parameter
-    customers = Customer.objects.all()
-    return render(request, 'customer.html', {'customers': customers})
-
+def customer(request):
+    if request.method == 'POST':
+        search_query = request.POST.get('search_query', '')  # Get the search query from the form
+        found_customers = []
+        with open('customername.txt', 'r') as file:
+            for line in file:
+                data = line.strip().split(',')
+                first_name, last_name, address, phone_number = data
+                # Check if the search query matches the first or last name of any customer
+                if search_query.lower() in first_name.lower() or search_query.lower() in last_name.lower():
+                    found_customers.append({
+                        'first_name': first_name,
+                        'last_name': last_name,
+                        'address': address,
+                        'phone_number': phone_number
+                    })
+        return render(request, 'customer.html', {'found_customers': found_customers, 'search_query': search_query})
+    else:
+        return render(request, 'customer.html')
