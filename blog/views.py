@@ -68,7 +68,7 @@ def customer(request):
             for line in file:
                 data = line.strip().split(',')
                 first_name, last_name, address, phone_number = data
-                # Check if the search query matches the first or last name of any customer
+                
                 if search_query.lower() in first_name.lower() or search_query.lower() in last_name.lower():
                     found_customers.append({
                         'first_name': first_name,
