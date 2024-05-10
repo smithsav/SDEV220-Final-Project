@@ -66,7 +66,8 @@ def customer(request):
         form = CustomerForm(request.POST)
         
         if form.is_valid():
-            return HttpResponseRedirect("blog/customer.html")
+            return render(request, 'blog/customer.html', {"form": form, "success_message": "Form submitted successfully!"})
+
     else:
         form = CustomerForm()
 
