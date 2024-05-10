@@ -26,15 +26,11 @@
 
 <h1>Record Sales</h1>
 
-<form action="{% url 'record_sale' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
-
-<!-- Display total_sales if available -->
-{% if total_sales %}
-    <p>Total Sales: ${{ total_sales }}</p>
-{% endif %}
-
+<body>
+    <h1>Calculate Total Sales</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Calculate</button>
+    </form>
 </body>
