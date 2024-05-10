@@ -76,6 +76,8 @@ def customer(request):
                         'address': address,
                         'phone_number': phone_number
                     })
+        first_name = request.POST.get('first_name', '') 
+        last_name = request.POST.get('last_name', '') 
         return render(request, 'customer.html', {'found_customers': found_customers, 'search_query': search_query})
     else:
         return render(request, 'customer.html')
