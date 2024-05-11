@@ -33,4 +33,27 @@
         {{ form.as_p }}
         <button type="submit">Calculate</button>
     </form>
+
+    <h1>Record Sales Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Quantity</th>
+                <th>Subtotal</th>
+                <th>Tax</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ RecordSale.product_quantity }}</td>
+                <td>{{ RecordSale.subtotal }}</td>
+                <td>{{ RecorSale.tax }}</td>
+                <td>{{ RecordSale.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 </body>
