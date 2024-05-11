@@ -46,6 +46,9 @@ class Migration(migrations.Migration):
                 ('tax', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('total', models.DecimalField(decimal_places=2, max_digits=10)),
             ],
+            options={
+                'db_table': 'record_sale',
+            },
         ),
         migrations.CreateModel(
             name='Post',
