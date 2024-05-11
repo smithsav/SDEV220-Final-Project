@@ -12,6 +12,8 @@ from django.shortcuts import render
 from .forms import RecordSaleForm
 from .totalsales import calculate_totalsales
 from .models import RecordSale
+import os
+from .searchcustomer import search_customer_in_file 
 
 
 def base(request):
@@ -63,33 +65,33 @@ def record_sale(request):
     
     return render(request, 'blog/record_sale.html', {'form': form, 'record_sales': record_sales})
 
-def customer(request):
+# def customer_view(request):
+#     if request.method == 'POST':
+#         form = CustomerForm(request.POST)
+#         if form.is_valid():
+#             first_name = form.cleaned_data['first_name']
+#             last_name = form.cleaned_data['last_name']
+#             customer_details = search_customer_in_file(first_name, last_name)
+#             if customer_details:
+#                 return render(request, 'blog/customer.html', {'form': form, 'customer_details': customer_details})
+#             else:
+#                 return render(request, 'blog/customer.html', {'form': form, 'error_message': 'Customer not found.'})
+#     else:
+#         form = CustomerForm()
+#     return render(request, 'blog/customer.html', {'form': form}) # Adjust template path
+
+def customer_view(request):
     if request.method == 'POST':
-        search_query = request.POST.get('search_query', '') 
-        first_name = request.POST.get('first_name', '') 
-        last_name = request.POST.get('last_name', '') 
-        
-        found_customers = []
-        with open('customername.txt', 'r') as file:
-            for line in file:
-                data = line.strip().split(',')
-                file_first_name, file_last_name, address, phone_number = data
-                
-                if (first_name.lower() in file_first_name.lower() or
-                    last_name.lower() in file_last_name.lower()):
-                    
-                    found_customers.append({
-                        'first_name': file_first_name,
-                        'last_name': file_last_name,
-                        'address': address,
-                        'phone_number': phone_number
-                    })
-        
-        return render(request, 'customer.html', {
-            'found_customers': found_customers,
-            'search_query': search_query,
-            'first_name': first_name,
-            'last_name': last_name
-        })
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            customer_details = search_customer_in_file(first_name, last_name)
+            if customer_details:
+                found_customers = [customer_details]
+            else:
+                found_customers = []
+            return render(request, 'blog/customer.html', {'form': form, 'found_customers': found_customers})
     else:
-        return render(request, 'blog/customer.html')
+        form = CustomerForm()
+    return render(request, 'blog/customer.html', {'form': form})

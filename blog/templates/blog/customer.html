@@ -7,37 +7,40 @@
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Welcome to Clothing For All Inventory Management</h1>
-        <p>This system helps you manage your inventory efficiently.</p>
-    </header>
+<header>
+    <h1>Welcome to Clothing For All Inventory Management</h1>
+    <p>This system helps you manage your inventory efficiently.</p>
+</header>
 
+<div class="container">
     <section>
         <h2>Main Features</h2>
-        <li><a href="{% url 'base' %}">Home</a></li>
-        <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
-        <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
-        <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
-        <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
+        <ul>
+            <li><a href="{% url 'base' %}">Home</a></li>
+            <li><a href="{% url 'add_products' %}">Add Products</a> - Add products to the inventory with details such as name, description, category, price, and quantity.</li>
+            <li><a href="{% url 'view_inventory' %}">View Inventory</a> - Track stock levels for each product.</li>
+            <li><a href="{% url 'record_sale' %}">Record Sale</a> - Record sales transactions including the products sold, quantity, and total price.</li>
+            <li><a href="{% url 'customer' %}">Search Customer</a> - Search for customer orders.</li>
         </ul>
     </section>
 </div>
-
-<h1>Search Customer</h1>
-<form method="post">
-    {% csrf_token %}
-    <label for="first_name">First Name:</label>
-    <input type="text" id="first_name" name="first_name"><br>
-    <label for="last_name">Last Name:</label>
-    <input type="text" id="last_name" name="last_name"><br>
-    <button type="submit">Search</button>
-</form>
-<ul>
-    {% for customer in found_customers %}
-        <li>{{ customer.first_name }} {{ customer.last_name }} - {{ customer.address }} - {{ customer.phone_number }}</li>
-    {% empty %}
-        <li>No customers found.</li>
-    {% endfor %}
-</ul>
+<body>
+    <h1>Search Customer</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    
+    {% if found_customers %}
+        <p>Customer found!</p>
+        <ul>
+            {% for customer in found_customers %}
+                <li>{{ customer.first_name }} {{ customer.last_name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No customers found.</p>
+    {% endif %}
+</body>
 </html>

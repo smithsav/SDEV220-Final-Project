@@ -16,7 +16,7 @@ def view_inventory(request):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name', 'last_name', 'address', 'phone_number']
+        fields = ['first_name', 'last_name']
 
 class RecordSaleForm(forms.Form):
     product_quantity = forms.IntegerField()
