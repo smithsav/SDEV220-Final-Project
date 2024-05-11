@@ -17,6 +17,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+    class Meta:
+        db_table = 'post'
+    
 class product(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField()
@@ -26,13 +29,16 @@ class product(models.Model):
         db_table = 'product'
 
 class Customer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=100, default='')
+    last_name = models.CharField(max_length=100, default='') 
+    address = models.CharField(max_length=200, default='')  
+    phone_number = models.CharField(max_length=20, default='')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+    class Meta:
+        db_table = 'customer'
 
 class RecordSale(models.Model):
     product_quantity = models.IntegerField()
@@ -43,3 +49,5 @@ class RecordSale(models.Model):
     def __str__(self):
         return f"Sale Record - Quantity: {self.product_quantity}, Total: {self.total}"
     
+    class Meta:
+        db_table = "record_sale"
