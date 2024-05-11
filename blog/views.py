@@ -56,10 +56,12 @@ def record_sale(request):
                 total=total_sales
             )
             return redirect('record_sale')
-        # If form is not valid, render the form again with validation errors
     else:
         form = RecordSaleForm()
-    return render(request, 'blog/record_sale.html', {'form': form})
+
+    record_sales = RecordSale.objects.all()
+    
+    return render(request, 'blog/record_sale.html', {'form': form, 'record_sales': record_sales})
 
 def customer(request):
     if request.method == 'POST':
