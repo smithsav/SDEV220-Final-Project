@@ -45,12 +45,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for sale in sales %}
+            {% for record_sale in record_sales %}
             <tr>
-                <td>{{ RecordSale.product_quantity }}</td>
-                <td>{{ RecordSale.subtotal }}</td>
-                <td>{{ RecorSale.tax }}</td>
-                <td>{{ RecordSale.total }}</td>
+                <td>{{ record_sale.product_quantity }}</td>
+                <td>{{ record_sale.subtotal }}</td>
+                <td>{{ record_sale.tax }}</td>
+                <td>{{ record_sale.total }}</td>
             </tr>
             {% endfor %}
         </tbody>
