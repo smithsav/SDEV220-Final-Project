@@ -11,6 +11,7 @@ from .models import Customer
 from django.shortcuts import render
 from .forms import RecordSaleForm
 from .totalsales import calculate_totalsales
+from .models import RecordSale
 
 
 def base(request):
@@ -48,17 +49,17 @@ def record_sale(request):
             tax = form.cleaned_data['tax']
             operation = form.cleaned_data['operation']
             total_sales = calculate_totalsales(product_quantity, subtotal, tax, operation)
-            record_sale = RecordSaleForm.objects.create(
+            record_sale = RecordSale.objects.create(
                 product_quantity=product_quantity,
                 subtotal=subtotal,
                 tax=tax,
                 total=total_sales
             )
-            record_sale.save()
-            return redirect('record_sale')  #
+            return redirect('record_sale')
+        # If form is not valid, render the form again with validation errors
     else:
         form = RecordSaleForm()
-    return render(request, 'record_sale.html', {'form': form})
+    return render(request, 'blog/record_sale.html', {'form': form})
 
 def customer(request):
     if request.method == 'POST':
@@ -89,4 +90,4 @@ def customer(request):
             'last_name': last_name
         })
     else:
-        return render(request, 'customer.html')
+        return render(request, 'blog/customer.html')
