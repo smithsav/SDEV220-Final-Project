@@ -36,7 +36,7 @@
         <p>Customer found!</p>
         <ul>
             {% for customer in found_customers %}
-                <li>{{ customer.first_name }} {{ customer.last_name }}</li>
+            <li>{{ customer.first_name }} {{ customer.last_name }} - {{ customer.address }} - {{ customer.phone_number }}</li>
             {% endfor %}
         </ul>
     {% else %}
